@@ -1,10 +1,8 @@
 import java.io.IOException;
-class PasswordCheck {
+class PasswordChecker {
 
     public static int count = 6;
     private boolean check = false;
-    private Validator validations = new Validator();
-
     void passwordIsValid(String password) throws IOException {
         if(password.length() < 1) {
             check = true;
@@ -20,33 +18,78 @@ class PasswordCheck {
         }else {
             count --;
         }
-        if (!validations.lowerCase(password)) {
+        if (!lowerCase(password)) {
             System.out.println(passwordIsOk());
             throw new IOException("password should have at least one lowercase letter");
         }else {
                 count --;
         }
-        if (!validations.upperCase(password)) {
+        if (!upperCase(password)) {
             System.out.println(passwordIsOk());
             throw new IOException("password should have at least one uppercase letter");
         }else {
             count --;
         }
-        if (!validations.digit(password)) {
+        if (!digit(password)) {
             System.out.println(passwordIsOk());
             throw new NumberFormatException("password should at least have one digit");
         }else {
             count --;
         }
-        if (!validations.character(password)) {
+        if (!character(password)) {
             System.out.println(passwordIsOk());
             throw new IOException("password should have at least one special character");
         }else {
             count --;
         }
     }
+    private boolean lowerCase (String password) {
+        boolean results = false;
+        for (int i =0; i < password.length(); i++) {
+            if (Character.isLowerCase(password.charAt(i))) {
+                results = true;
+                break;
+            }
+        }
+        return results;
+    }
+    private boolean upperCase (String password) {
+        boolean results = false;
+        char c;
+        for (int i = 0; i < password.length(); i++) {
+            c = password.charAt(i);
+            if (Character.isUpperCase(c)) {
+                results = true;
+                break;
+            }
+        }
+        return results;
+    }
+    private boolean digit (String password) {
+        boolean results =  false;
+        char c;
+        for (int i = 0; i < password.length(); i++) {
+            c = password.charAt(i);
+            if (Character.isDigit(c)) {
+                results = true;
+                break;
+            }
+        }
+        return results;
+    }
+    private boolean character (String password) {
+        boolean results = false;
+        char c;
+        for (int i = 0; i < password.length(); i++) {
+            c = password.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                results = true;
+                break;
+            }
+        }
+        return results;
+    }
     boolean passwordIsOk() {
-
         boolean results = true;
         if (count > 3 && check) {
             results = false;

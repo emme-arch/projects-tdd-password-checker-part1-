@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        PasswordCheck passwordChecker = new PasswordCheck();
+        PasswordChecker passwordChecker = new PasswordChecker();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a password: ");
         String password = scanner.nextLine();
