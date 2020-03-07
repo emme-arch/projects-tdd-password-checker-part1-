@@ -16,6 +16,6 @@ class PasswordCheckerTest {
 
     @Test
     void passwordIsOk() {
-        assertEquals(true,passwordChecker.passwordIsOk());
+        assertTrue(passwordChecker.passwordIsOk());
     }
 }
